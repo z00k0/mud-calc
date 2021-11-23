@@ -1,0 +1,143 @@
+#:kivy 1.0
+
+<MudCalc>:
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            Label:
+                text: 'Необходимая плотность при утяжелении раствора, г/см3'
+                text_size: self.width - 20, self.height - 5
+                valign: 'bottom'
+                size_hint: .8, 1
+            
+            TextInput:
+                id: dens_sm
+                input_filter: 'float'
+                valign: 'center'
+                halign: 'center'
+                multiline: False
+                size_hint: .2, .7
+                
+                text: '0'
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            Label:
+                text: 'Исходный объем раствора, м3'
+                text_size: self.width - 20, self.height - 5
+                valign: 'bottom'
+                size_hint: .8, 1
+            
+            TextInput:
+                id: vol_2
+                input_filter: 'float'
+                valign: 'bottom'
+                halign: 'center'
+                multiline: False
+                size_hint: .2, .7
+                text: '0'
+        
+        BoxLayout:
+            orientation: 'horizontal'
+
+            Label:
+                text: 'Плотность исходного раствора'
+                text_size: self.width - 20, self.height - 5
+                valign: 'bottom'
+                size_hint: .8, 1
+            
+            TextInput:
+                id: dens_2
+                input_filter: 'float'
+                valign: 'bottom'
+                halign: 'center'
+                multiline: False
+                size_hint: .2, .7
+                text: '0'
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            Label:
+                text: 'Удельный вес утяжелителя, г/см3'
+                text_size: self.width - 20, self.height - 5
+                valign: 'bottom'
+                size_hint: .8, 1
+            
+            TextInput:
+                id: dens_1
+                input_filter: 'float'
+                valign: 'center'
+                halign: 'center'
+                multiline: False
+                size_hint: .2, .7
+                text: '2.6'
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            Label:
+                text: 'Необходимое количество утяжелителя, кг'
+                text_size: self.width - 20, self.height - 5
+                valign: 'bottom'
+                size_hint: .8, 1
+            
+            TextInput:
+                id: m_1
+                input_filter: 'float'
+                valign: 'bottom'
+                halign: 'center'
+                multiline: False
+                size_hint: .2, .7
+                readonly: True
+                text: '0'
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            Label:
+                text: 'Концентрация утяжелителя, кг/м3'
+                text_size: self.width - 20, self.height - 5
+                valign: 'bottom'
+                size_hint: .8, 1
+            
+            TextInput:
+                id: concentration
+                input_filter: 'float'
+                valign: 'bottom'
+                halign: 'center'
+                multiline: False
+                size_hint: .2, .7
+                readonly: True
+                text: '0'
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            Label:
+                text: 'Конечный объем раствора, м3'
+                text_size: self.width - 20, self.height - 5
+                valign: 'bottom'
+                size_hint: .8, 1
+            
+            TextInput:
+                id: vol_sm
+                input_filter: 'float'
+                valign: 'bottom'
+                halign: 'center'
+                multiline: False
+                size_hint: .2, .7
+                # font_size: .8 * 
+                readonly: True
+                text: '0'
+
+        Button:
+            text: 'Рассчитать'
+            on_press: root.calculate()
