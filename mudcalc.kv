@@ -1,143 +1,101 @@
-#:kivy 1.0
+<ItemLabel@MDLabel>:
+    font_size: '15sp'
+    halign: 'left'
+    valign: 'center'
+    text_size: self.size
+    size_hint_x: .8
+
+<ItemLabelCalc@MDLabel>:
+    font_size: '15sp'
+    halign: 'center'
+    valign: 'center'
+    text_size: self.size
+    size_hint_x: .2
+
+<ItemInput@MDTextField>:
+    font_size: '15sp'
+    halign: 'center'
+    valign: 'center'
+    text_size: self.size
+    size_hint_x: .2
+    multiline: False
+    input_filter: 'float'
+    input_type: 'number'
+
 
 <MudCalc>:
+    rows: 8
+    padding: 20
+    spacing: 20
 
     BoxLayout:
-        orientation: 'vertical'
-        padding: 20
-        spacing: 10
 
-        BoxLayout:
-            orientation: 'horizontal'
+        ItemLabel:
+            text: 'Необходимая плотность при утяжелении раствора, г/см3'
 
-            Label:
-                text: 'Необходимая плотность при утяжелении раствора, г/см3'
-                text_size: self.width - 20, self.height - 5
-                valign: 'bottom'
-                size_hint: .8, 1
-            
-            TextInput:
-                id: dens_sm
-                input_filter: 'float'
-                valign: 'center'
-                halign: 'center'
-                multiline: False
-                size_hint: .2, .7
-                
-                text: '0'
+        ItemInput:
+            id: dens_mix
+            text: ''
 
-        BoxLayout:
-            orientation: 'horizontal'
+    BoxLayout:
 
-            Label:
-                text: 'Исходный объем раствора, м3'
-                text_size: self.width - 20, self.height - 5
-                valign: 'bottom'
-                size_hint: .8, 1
-            
-            TextInput:
-                id: vol_2
-                input_filter: 'float'
-                valign: 'bottom'
-                halign: 'center'
-                multiline: False
-                size_hint: .2, .7
-                text: '0'
-        
-        BoxLayout:
-            orientation: 'horizontal'
+        ItemLabel:
+            text: 'Исходный объем раствора, м3'
 
-            Label:
-                text: 'Плотность исходного раствора'
-                text_size: self.width - 20, self.height - 5
-                valign: 'bottom'
-                size_hint: .8, 1
-            
-            TextInput:
-                id: dens_2
-                input_filter: 'float'
-                valign: 'bottom'
-                halign: 'center'
-                multiline: False
-                size_hint: .2, .7
-                text: '0'
+        ItemInput:
+            id: vol_2
+            text: ''
 
-        BoxLayout:
-            orientation: 'horizontal'
+    BoxLayout:
 
-            Label:
-                text: 'Удельный вес утяжелителя, г/см3'
-                text_size: self.width - 20, self.height - 5
-                valign: 'bottom'
-                size_hint: .8, 1
-            
-            TextInput:
-                id: dens_1
-                input_filter: 'float'
-                valign: 'center'
-                halign: 'center'
-                multiline: False
-                size_hint: .2, .7
-                text: '2.6'
+        ItemLabel:
+            text: 'Плотность исходного раствора'
 
-        BoxLayout:
-            orientation: 'horizontal'
+        ItemInput:
+            id: dens_2
+            text: ''
 
-            Label:
-                text: 'Необходимое количество утяжелителя, кг'
-                text_size: self.width - 20, self.height - 5
-                valign: 'bottom'
-                size_hint: .8, 1
-            
-            TextInput:
-                id: m_1
-                input_filter: 'float'
-                valign: 'bottom'
-                halign: 'center'
-                multiline: False
-                size_hint: .2, .7
-                readonly: True
-                text: '0'
+    BoxLayout:
 
-        BoxLayout:
-            orientation: 'horizontal'
+        ItemLabel:
+            text: 'Удельный вес утяжелителя, г/см3'
 
-            Label:
-                text: 'Концентрация утяжелителя, кг/м3'
-                text_size: self.width - 20, self.height - 5
-                valign: 'bottom'
-                size_hint: .8, 1
-            
-            TextInput:
-                id: concentration
-                input_filter: 'float'
-                valign: 'bottom'
-                halign: 'center'
-                multiline: False
-                size_hint: .2, .7
-                readonly: True
-                text: '0'
+        ItemInput:
+            id: dens_1
+            input_filter: 'float'
+            text: '2.6'
 
-        BoxLayout:
-            orientation: 'horizontal'
+    BoxLayout:
 
-            Label:
-                text: 'Конечный объем раствора, м3'
-                text_size: self.width - 20, self.height - 5
-                valign: 'bottom'
-                size_hint: .8, 1
-            
-            TextInput:
-                id: vol_sm
-                input_filter: 'float'
-                valign: 'bottom'
-                halign: 'center'
-                multiline: False
-                size_hint: .2, .7
-                # font_size: .8 * 
-                readonly: True
-                text: '0'
+        ItemLabel:
+            text: 'Необходимое количество утяжелителя, кг'
 
-        Button:
+        ItemLabelCalc:
+            id: m_1
+            text: '0'
+
+    BoxLayout:
+
+        ItemLabel:
+            text: 'Концентрация утяжелителя, кг/м3'
+
+        ItemLabelCalc:
+            id: concentration
+            text: '0'
+
+    BoxLayout:
+
+        ItemLabel:
+            text: 'Конечный объем раствора, м3'
+
+        ItemLabelCalc:
+            id: vol_mix
+            text: '0'
+
+    BoxLayout:
+        padding: [30, 10, 30, 10]
+
+        MDRaisedButton:
             text: 'Рассчитать'
             on_press: root.calculate()
+            size_hint: 1, .8

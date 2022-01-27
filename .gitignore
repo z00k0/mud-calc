@@ -1,3 +1,5 @@
 first.py
 calc.py
 venv/
+mudcalc_1.kv
+*.pyc
