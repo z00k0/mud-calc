@@ -22,6 +22,15 @@
     input_filter: 'float'
     input_type: 'number'
 
+<ItemConfirm>:
+    on_release: 
+        root.set_icon(check)
+        root.set_weighting(self.text)
+        app.dialog.dismiss()
+
+    CheckboxLeftWidget:
+        id: check
+        group: 'check'
 
 <MudCalc>:
     rows: 8
@@ -60,15 +69,18 @@
         ItemLabel:
             text: 'Удельный вес утяжелителя, г/см3'
 
-        ItemInput:
+        MDFlatButton:
             id: dens_1
-            input_filter: 'float'
-            text: '2.6'
+            text: app.dens_1
+
+            on_release: 
+                app.dens_1 = self.text
+                app.choose_weighting_dialog()
 
     BoxLayout:
 
         ItemLabel:
-            text: 'Необходимое количество утяжелителя, кг'
+            text: 'Необходимое количество утяжелителя, тн'
 
         ItemLabelCalc:
             id: m_1
@@ -97,5 +109,5 @@
 
         MDRaisedButton:
             text: 'Рассчитать'
-            on_press: root.calculate()
+            on_release: root.calculate()
             size_hint: 1, .8
